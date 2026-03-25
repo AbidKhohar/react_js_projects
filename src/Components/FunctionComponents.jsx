@@ -9,6 +9,9 @@ function FunctionComponents() {
     <div>
       <h1>React Function Component</h1>
 
+      <h1>React Function Component a</h1>
+
+
       <input
         type="text"
         placeholder="Enter your name"
