@@ -4,9 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-app</title>
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="description" content="KloudExel - Modern React + TypeScript + Tailwind CSS CRUD Application" />
+    <title>KloudExel - User Management</title>
+    <script>
+      // Prevent flash of wrong theme
+      const darkMode = localStorage.getItem('darkMode');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (darkMode === 'true' || (darkMode === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-dark-900 text-dark-900 dark:text-white transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
