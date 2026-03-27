@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
+          Mobile menu button
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -49,24 +49,6 @@ const Navbar: React.FC = () => {
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {/* {mobileMenuOpen && (
-          <div className="md:hidden pb-4 bg-gray-50">
-            {navItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => {
-                  navigate(item.path);
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-sky-600 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div> */}
-        {/* )} */}
       </div>
     </nav>
   );

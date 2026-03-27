@@ -17,7 +17,6 @@ const Home: React.FC = () => {
 
        
 
-        {/* CTA Button */}
         <div className="text-center mb-8">
           <button
             onClick={() => navigate('/create')}
