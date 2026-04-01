@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { createEmployee, updateEmployee } from "../api/employeeApi";
 import { employeeSchema } from "../api/employeeSchema";
+import { toast } from "sonner";
 
 const EmployeeForm = ({ selected, onSaved }) => {
   const [loading, setLoading] = useState(false);
-  const [serverError, setServerError] = useState("");
 
   const validateField = (validator, value) => {
     try {
@@ -28,7 +28,6 @@ const EmployeeForm = ({ selected, onSaved }) => {
     },
     onSubmit: async ({ value }) => {
       setLoading(true);
-      setServerError("");
       try {
         const data = {
           name: value.name,
@@ -38,14 +37,18 @@ const EmployeeForm = ({ selected, onSaved }) => {
 
         if (selected?.id) {
           await updateEmployee(selected.id, data);
+          toast.success("Employee updated successfully!");
         } else {
           await createEmployee(data);
+          toast.success("Employee created successfully!");
         }
 
         form.reset();
         onSaved();
       } catch (err) {
-        setServerError(err.response?.data?.message || "Operation failed");
+        const errorMessage =
+          err.response?.data?.message || "Operation failed";
+        toast.error(errorMessage);
         console.error(err);
       } finally {
         setLoading(false);
@@ -68,12 +71,6 @@ const EmployeeForm = ({ selected, onSaved }) => {
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         {selected ? "✏️ Edit Employee" : "➕ Add New Employee"}
       </h2>
-
-      {serverError && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          ⚠️ {serverError}
-        </div>
-      )}
 
       <form
         onSubmit={(e) => {

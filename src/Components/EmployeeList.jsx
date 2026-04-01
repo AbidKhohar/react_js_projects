@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { getEmployees, deleteEmployee } from "../api/employeeApi";
+import { toast } from "sonner";
 
 const EmployeeList = ({ onEdit, refreshKey }) => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [deleting, setDeleting] = useState(null);
 
   const fetchEmployees = async () => {
     setLoading(true);
-    setError("");
     try {
       const { data } = await getEmployees();
       setEmployees(data);
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to load employees");
+      toast.error(err.response?.data?.message || "Failed to load employees");
       console.error(err);
     } finally {
       setLoading(false);
@@ -32,9 +31,9 @@ const EmployeeList = ({ onEdit, refreshKey }) => {
     try {
       await deleteEmployee(id);
       setEmployees(employees.filter(emp => emp.id !== id));
-      setError("");
+      toast.success("Employee deleted successfully!");
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to delete employee");
+      toast.error(err.response?.data?.message || "Failed to delete employee");
       console.error(err);
     } finally {
       setDeleting(null);
@@ -54,12 +53,6 @@ const EmployeeList = ({ onEdit, refreshKey }) => {
           Refresh
         </button>
       </div>
-
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-          {error}
-        </div>
-      )}
 
       {employees.length === 0 ? (
         <div className="text-center py-8 text-gray-500">
