@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import CreatePage from './Components/CreatePage';
 import Departments from './Components/Departments';
+import InsurancePage from './Components/InsurancePage';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/insurance" element={<InsurancePage />} />
       </Routes>
     </BrowserRouter>
   );
