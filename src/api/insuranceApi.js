@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://localhost:44370/api/Insurance",
+  // baseURL: "https://localhost:44370/api/Insurance",
+    baseURL: "https://unadvantageously-stunning-kandra.ngrok-free.dev/api/Insurance",
+
+
 });
 
 // ✅ CRUD methods

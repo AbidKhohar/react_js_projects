@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://localhost:44370/api/employees", // Your .NET API URL
+  baseURL: "https://unadvantageously-stunning-kandra.ngrok-free.dev/api/Employees",
 });
 
 // ✅ CRUD methods
